@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiftShip — Logistics Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.3.0/dist/chartjs-chart-matrix.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link rel="icon" type="image/png" href="/static/img/logo.png" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <img src="/static/img/logo.png" alt="SwiftShip" class="logo-img" />
+          SwiftShip
+        </a>
+        <nav class="nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/tracking" class="nav-link">Seguimiento</a>
+          <a href="/sellers" class="nav-link">Vendedores</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- ── FILTROS ─────────────────────────────────────────────── -->
+      <section class="filters-panel">
+        <h2 class="section-title">Filtros</h2>
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label>Desde</label>
+            <input type="date" id="date_from" />
+          </div>
+          <div class="filter-group">
+            <label>Hasta</label>
+            <input type="date" id="date_to" />
+          </div>
+          <div class="filter-group">
+            <label>Estado</label>
+            <select id="status" multiple>
+              <option value="Pending">Pending</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Returned">Returned</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>País</label>
+            <input type="text" id="country" placeholder="Ej: United States" />
+          </div>
+          <div class="filter-group">
+            <label>Categoría</label>
+            <input type="text" id="category" placeholder="Ej: Electronics" />
+          </div>
+          <div class="filter-group">
+            <label>Marca</label>
+            <input type="text" id="brand" placeholder="Ej: Samsung" />
+          </div>
+          <div class="filter-group">
+            <label>Método de Pago</label>
+            <input
+              type="text"
+              id="payment_method"
+              placeholder="Ej: Credit Card"
+            />
+          </div>
+        </div>
+        <div class="filters-actions">
+          <button id="btn-apply" class="btn-primary">Aplicar Filtros</button>
+          <button id="btn-reset" class="btn-secondary">Limpiar</button>
+          <button id="btn-export" class="btn-export">⬇ Exportar CSV</button>
+        </div>
+      </section>
+
+      <!-- ── KPIs ────────────────────────────────────────────────── -->
+      <section class="kpi-panel">
+        <h2 class="section-title">Indicadores Clave</h2>
+        <div class="kpi-grid">
+          <div class="kpi-card" id="kpi-revenue">
+            <div class="kpi-label">Ingresos Totales</div>
+            <div class="kpi-value" id="val-revenue">—</div>
+          </div>
+          <div class="kpi-card" id="kpi-discount">
+            <div class="kpi-label">Descuento Promedio</div>
+            <div class="kpi-value" id="val-discount">—</div>
+          </div>
+          <div class="kpi-card" id="kpi-brand">
+            <div class="kpi-label">Marca Más Vendida</div>
+            <div class="kpi-value" id="val-brand">—</div>
+          </div>
+          <div class="kpi-card" id="kpi-payment">
+            <div class="kpi-label">Método de Pago Top</div>
+            <div class="kpi-value" id="val-payment">—</div>
+          </div>
+          <div class="kpi-card" id="kpi-correlation">
+            <div class="kpi-label">Correlación Descuento–Cancelación</div>
+            <div class="kpi-value" id="val-correlation">—</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── GRÁFICOS ESTÁNDAR ────────────────────────────────────── -->
+      <section class="charts-section">
+        <h2 class="section-title">Gráficos Estándar</h2>
+        <div class="charts-grid-3">
+          <div class="chart-card">
+            <h3>Ingresos por País</h3>
+            <canvas id="chart-bar"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Pedidos por Semana</h3>
+            <canvas id="chart-line"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Distribución por Estado</h3>
+            <canvas id="chart-pie"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── GRÁFICOS AVANZADOS ───────────────────────────────────── -->
+      <section class="charts-section">
+        <h2 class="section-title">Gráficos Avanzados</h2>
+        <div class="charts-grid-2">
+          <div class="chart-card chart-card--tall">
+            <h3>Heatmap — País vs Categoría</h3>
+            <div id="chart-heatmap"></div>
+          </div>
+          <div class="chart-card chart-card--tall">
+            <h3>Sankey — País → Categoría → Estado</h3>
+            <div id="chart-sankey"></div>
+          </div>
+        </div>
+        <div class="charts-grid-2">
+          <div class="chart-card">
+            <h3>Bubble Chart — Categorías</h3>
+            <canvas id="chart-bubble"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Treemap — Ingresos por Categoría y Marca</h3>
+            <div id="chart-treemap"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── TABLA ────────────────────────────────────────────────── -->
+      <section class="table-section">
+        <h2 class="section-title">Explorador de Pedidos</h2>
+        <div class="table-controls">
+          <span id="table-count">—</span>
+          <select id="page-size">
+            <option value="10">10 por página</option>
+            <option value="25" selected>25 por página</option>
+            <option value="50">50 por página</option>
+          </select>
+        </div>
+        <div class="table-wrapper">
+          <table id="orders-table">
+            <thead>
+              <tr>
+                <th data-col="OrderID">Order ID</th>
+                <th data-col="OrderDate" class="sortable">Fecha ↕</th>
+                <th data-col="CustomerName">Cliente</th>
+                <th data-col="ProductName">Producto</th>
+                <th data-col="Category">Categoría</th>
+                <th data-col="Brand">Marca</th>
+                <th data-col="Quantity" class="sortable">Qty ↕</th>
+                <th data-col="UnitPrice" class="sortable">Precio ↕</th>
+                <th data-col="Discount">Descuento</th>
+                <th data-col="Tax">Tax</th>
+                <th data-col="ShippingCost" class="sortable">Envío ↕</th>
+                <th data-col="TotalAmount" class="sortable">Total ↕</th>
+                <th data-col="PaymentMethod">Pago</th>
+                <th data-col="OrderStatus">Estado</th>
+                <th data-col="City">Ciudad</th>
+                <th data-col="Country">País</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody">
+              <tr>
+                <td colspan="16" class="empty-msg">Cargando datos...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination" id="pagination"></div>
+      </section>
+    </main>
+
+    <script src="/static/js/dashboard.js"></script>
+  </body>
+</html>

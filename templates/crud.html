@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiftShip — CRUD</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+    <link rel="stylesheet" href="/static/css/tracking.css" />
+    <link rel="stylesheet" href="/static/css/crud.css" />
+    <link rel="icon" type="image/png" href="/static/img/logo.png" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <img src="/static/img/logo.png" alt="SwiftShip" class="logo-img" />
+          SwiftShip
+        </a>
+        <nav class="nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/tracking" class="nav-link">Seguimiento</a>
+          <a href="/sellers" class="nav-link">Vendedores</a>
+          <a href="/crud" class="nav-link active">CRUD</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="tracking-header">
+        <h1 class="page-title">Gestión de Colecciones</h1>
+        <p class="page-subtitle">Crear, leer, actualizar y eliminar documentos en MongoDB</p>
+      </section>
+
+      <!-- ── SELECTOR DE COLECCIÓN ──────────────────────────────── -->
+      <section class="crud-controls">
+        <div class="crud-controls-row">
+          <select id="collection-select">
+            <option value="pedidos">📦 Pedidos</option>
+            <option value="clientes">👤 Clientes</option>
+            <option value="productos">🛍️ Productos</option>
+            <option value="vendedores">🏪 Vendedores</option>
+            <option value="categorias">🏷️ Categorías</option>
+            <option value="marcas">⭐ Marcas</option>
+            <option value="metodos_pago">💳 Métodos de Pago</option>
+            <option value="estados">📋 Estados</option>
+            <option value="ubicaciones">📍 Ubicaciones</option>
+          </select>
+          <input type="text" id="crud-search" placeholder="Buscar..." autocomplete="off" />
+          <button class="btn-primary" id="btn-nuevo">+ Nuevo</button>
+        </div>
+        <div class="search-meta" id="crud-meta">Selecciona una colección</div>
+      </section>
+
+      <!-- ── TABLA ───────────────────────────────────────────────── -->
+      <section class="tracking-results">
+        <div class="table-wrapper">
+          <table id="crud-table">
+            <thead id="crud-thead"><tr><th>Cargando...</th></tr></thead>
+            <tbody id="crud-tbody"><tr><td class="empty-msg">Selecciona una colección</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── PAGINACIÓN ──────────────────────────────────────────── -->
+      <div class="pagination" id="crud-pagination"></div>
+
+    </main>
+
+    <!-- ── MODAL CREAR/EDITAR ──────────────────────────────────── -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal-panel">
+        <div class="modal-header">
+          <h2 id="modal-title">Nuevo documento</h2>
+          <button class="detail-close" id="modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <form id="modal-form"></form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" id="modal-cancel">Cancelar</button>
+          <button class="btn-primary" id="modal-save">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODAL CONFIRMAR ELIMINAR ────────────────────────────── -->
+    <div class="modal-overlay" id="confirm-overlay">
+      <div class="modal-panel modal-small">
+        <div class="modal-header">
+          <h2>¿Eliminar documento?</h2>
+          <button class="detail-close" id="confirm-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <p style="color: var(--text-secondary)">Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" id="confirm-cancel">Cancelar</button>
+          <button class="btn-danger" id="confirm-delete">Eliminar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/js/crud.js"></script>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiftShip — Gestión de Vendedores</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+    <link rel="stylesheet" href="/static/css/tracking.css" />
+    <link rel="stylesheet" href="/static/css/sellers.css" />
+    <link rel="icon" type="image/png" href="/static/img/logo.png" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <img src="/static/img/logo.png" alt="SwiftShip" class="logo-img" />
+          SwiftShip
+        </a>
+        <nav class="nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/tracking" class="nav-link">Seguimiento</a>
+          <a href="/sellers" class="nav-link">Vendedores</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="tracking-header">
+        <h1 class="page-title">Gestión de Vendedores</h1>
+        <p class="page-subtitle">
+          Consulta el rendimiento y la información de los vendedores registrados
+          en SwiftShip
+        </p>
+      </section>
+
+      <!-- ── KPIs DE VENDEDORES ──────────────────────────────────── -->
+      <section class="kpi-panel">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Vendedores</div>
+            <div class="kpi-value" id="kpi-total">—</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Vendedores Activos</div>
+            <div class="kpi-value" id="kpi-activos">—</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Calificación Promedio</div>
+            <div class="kpi-value" id="kpi-calificacion">—</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Mejor Vendedor</div>
+            <div class="kpi-value" id="kpi-mejor">—</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── BUSCADOR ────────────────────────────────────────────── -->
+      <section class="search-panel">
+        <div class="search-row">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar por nombre, ID o país..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="search-meta" id="search-meta">Cargando vendedores...</div>
+      </section>
+
+      <!-- ── TABLA ───────────────────────────────────────────────── -->
+      <section class="tracking-results">
+        <div class="table-wrapper">
+          <table id="sellers-table">
+            <thead>
+              <tr>
+                <th>Seller ID</th>
+                <th>Nombre</th>
+                <th>País</th>
+                <th>Ciudad</th>
+                <th>Calificación</th>
+                <th>Pedidos</th>
+                <th>Ingresos</th>
+                <th>Cancelaciones</th>
+                <th>Estado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="sellers-tbody">
+              <tr>
+                <td colspan="10" class="empty-msg">Cargando...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <!-- ── PAGINACIÓN ──────────────────────────────────────────── -->
+      <div class="pagination" id="pagination"></div>
+
+      <!-- ── PANEL DE DETALLE ────────────────────────────────────── -->
+      <div class="detail-overlay" id="detail-overlay">
+        <div class="detail-panel" id="detail-panel">
+          <div class="detail-header">
+            <div>
+              <div class="detail-order-id" id="detail-seller-id">—</div>
+              <div class="detail-date" id="detail-registro">—</div>
+            </div>
+            <button class="detail-close" id="detail-close">✕</button>
+          </div>
+
+          <div class="detail-status-bar">
+            <span class="badge" id="detail-activo-badge">—</span>
+          </div>
+
+          <div class="detail-grid">
+            <div class="detail-section">
+              <div class="detail-section-title">👤 Información Personal</div>
+              <div class="detail-row">
+                <span>Nombre</span><span id="d-nombre">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Email</span><span id="d-email">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Teléfono</span><span id="d-telefono">—</span>
+              </div>
+              <div class="detail-row">
+                <span>País</span><span id="d-pais">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Ciudad</span><span id="d-ciudad">—</span>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <div class="detail-section-title">📊 Rendimiento</div>
+              <div class="detail-row">
+                <span>Total pedidos</span><span id="d-pedidos">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Ingresos totales</span><span id="d-ingresos">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Tasa cancelación</span><span id="d-cancelacion">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Calificación</span><span id="d-calificacion">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Miembro desde</span><span id="d-fecha">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/static/js/sellers.js"></script>
+  </body>
+</html>

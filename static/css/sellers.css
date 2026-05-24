@@ -1,0 +1,20 @@
+/* ── CALIFICACIÓN ───────────────────────────────────────────── */
+.rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+}
+
+.rating-high { color: #10b981; }
+.rating-mid  { color: #f59e0b; }
+.rating-low  { color: #ef4444; }
+
+/* ── BADGE ACTIVO/INACTIVO ──────────────────────────────────── */
+.badge-activo   { background: #064e3b; color: #10b981; }
+.badge-inactivo { background: #450a0a; color: #ef4444; }
+
+/* ── CANCELACION ────────────────────────────────────────────── */
+.cancel-high { color: #ef4444; font-weight: 600; }
+.cancel-mid  { color: #f59e0b; font-weight: 600; }
+.cancel-low  { color: #10b981; font-weight: 600; }

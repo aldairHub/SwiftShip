@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiftShip — Logistics Intelligence</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+    <link rel="stylesheet" href="/static/css/home.css" />
+    <link rel="icon" type="image/png" href="/static/img/logo.png" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <img src="/static/img/logo.png" alt="SwiftShip" class="logo-img" />
+          SwiftShip
+        </a>
+        <nav class="nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/tracking" class="nav-link">Seguimiento</a>
+          <a href="/sellers" class="nav-link">Vendedores</a>
+          <a href="/crud" class="nav-link">CRUD</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="home-main">
+      <!-- ── HERO ───────────────────────────────────────────────── -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-badge">🌍 Plataforma de Inteligencia Logística</div>
+          <h1 class="hero-title">
+            Gestión inteligente<br />de logística global
+          </h1>
+          <p class="hero-subtitle">
+            SwiftShip conecta vendedores y compradores del comercio electrónico
+            global mediante un servicio de logística confiable, eficiente y
+            trazable.
+          </p>
+          <div class="hero-actions">
+            <a href="/dashboard" class="hero-btn-primary">Ver Dashboard</a>
+            <a href="/tracking" class="hero-btn-secondary">Rastrear Pedido</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img
+            src="/static/img/logo.png"
+            alt="SwiftShip"
+            class="hero-logo-big"
+          />
+        </div>
+      </section>
+
+      <!-- ── STATS ──────────────────────────────────────────────── -->
+      <section class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-orders">—</div>
+            <div class="stat-label">Pedidos Gestionados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-countries">—</div>
+            <div class="stat-label">Países Cubiertos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-sellers">—</div>
+            <div class="stat-label">Vendedores Activos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-revenue">—</div>
+            <div class="stat-label">Ingresos Totales</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── MÓDULOS ─────────────────────────────────────────────── -->
+      <section class="modules-section">
+        <h2 class="modules-title">Módulos del Sistema</h2>
+        <div class="modules-grid">
+          <a href="/dashboard" class="module-card">
+            <div class="module-icon">📊</div>
+            <div class="module-name">Dashboard Analítico</div>
+            <div class="module-desc">
+              Visualiza el rendimiento operacional con gráficos avanzados, KPIs
+              en tiempo real y análisis de tendencias por región, categoría y
+              método de pago.
+            </div>
+            <div class="module-link">Ir al Dashboard →</div>
+          </a>
+
+          <a href="/tracking" class="module-card">
+            <div class="module-icon">📦</div>
+            <div class="module-name">Seguimiento de Pedidos</div>
+            <div class="module-desc">
+              Rastrea cualquier pedido en tiempo real. Busca por cliente, país o
+              estado del envío y accede al detalle completo de cada transacción.
+            </div>
+            <div class="module-link">Rastrear Pedido →</div>
+          </a>
+
+          <a href="/sellers" class="module-card">
+            <div class="module-icon">🏪</div>
+            <div class="module-name">Gestión de Vendedores</div>
+            <div class="module-desc">
+              Monitorea el rendimiento de cada vendedor registrado. Analiza
+              tasas de cancelación, ingresos generados y calificaciones para
+              tomar decisiones operacionales.
+            </div>
+            <div class="module-link">Ver Vendedores →</div>
+          </a>
+
+          <a href="/crud" class="module-card">
+            <div class="module-icon">🗄️</div>
+            <div class="module-name">Gestión de Datos</div>
+            <div class="module-desc">
+              Crea, edita y elimina documentos en todas las colecciones de
+              MongoDB. Administra pedidos, clientes, productos, vendedores
+              y más desde una interfaz centralizada.
+            </div>
+            <div class="module-link">Ir al CRUD →</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── EMPRESA ─────────────────────────────────────────────── -->
+      <section class="company-section">
+        <div class="company-grid">
+          <div class="company-card">
+            <div class="company-icon">🎯</div>
+            <div class="company-label">Misión</div>
+            <p>
+              Conectar vendedores y compradores del comercio electrónico global
+              mediante un servicio de logística y distribución confiable,
+              eficiente y trazable.
+            </p>
+          </div>
+          <div class="company-card">
+            <div class="company-icon">🚀</div>
+            <div class="company-label">Visión</div>
+            <p>
+              Ser la empresa de logística e-commerce más confiable a nivel
+              internacional, reconocida por entregar cualquier producto, en
+              cualquier país, con total transparencia.
+            </p>
+          </div>
+          <div class="company-card">
+            <div class="company-icon">⭐</div>
+            <div class="company-label">Objetivo Principal</div>
+            <p>
+              Consolidarse como operador logístico líder para plataformas de
+              e-commerce en América, Europa y Asia en los próximos 5 años.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/js/home.js"></script>
+  </body>
+</html>

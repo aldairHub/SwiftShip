@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiftShip — Seguimiento de Pedidos</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+    <link rel="stylesheet" href="/static/css/tracking.css" />
+    <link rel="icon" type="image/png" href="/static/img/logo.png" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <img src="/static/img/logo.png" alt="SwiftShip" class="logo-img" />
+          SwiftShip
+        </a>
+        <nav class="nav">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/tracking" class="nav-link">Seguimiento</a>
+          <a href="/sellers" class="nav-link">Vendedores</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="tracking-header">
+        <h1 class="page-title">Seguimiento de Pedidos</h1>
+        <p class="page-subtitle">
+          Busca cualquier pedido por nombre de cliente, ID o país de destino
+        </p>
+      </section>
+
+      <!-- ── BUSCADOR ────────────────────────────────────────────── -->
+      <section class="search-panel">
+        <div class="search-row">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar por cliente, Order ID o país..."
+              autocomplete="off"
+            />
+          </div>
+          <select id="status-filter">
+            <option value="">Todos los estados</option>
+            <option value="Pending">Pending</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+            <option value="Returned">Returned</option>
+          </select>
+        </div>
+        <div class="search-meta" id="search-meta">
+          Mostrando todos los pedidos recientes
+        </div>
+      </section>
+
+      <!-- ── TABLA DE RESULTADOS ─────────────────────────────────── -->
+      <section class="tracking-results">
+        <div class="table-wrapper">
+          <table id="tracking-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>País</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tracking-tbody">
+              <tr>
+                <td colspan="9" class="empty-msg">Cargando pedidos...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <!-- ── PAGINACIÓN ──────────────────────────────────────────── -->
+      <div class="pagination" id="pagination"></div>
+
+      <!-- ── PANEL DE DETALLE ────────────────────────────────────── -->
+      <div class="detail-overlay" id="detail-overlay">
+        <div class="detail-panel" id="detail-panel">
+          <div class="detail-header">
+            <div>
+              <div class="detail-order-id" id="detail-order-id">—</div>
+              <div class="detail-date" id="detail-date">—</div>
+            </div>
+            <button class="detail-close" id="detail-close">✕</button>
+          </div>
+
+          <div class="detail-status-bar">
+            <span class="badge" id="detail-status-badge">—</span>
+          </div>
+
+          <div class="detail-grid">
+            <div class="detail-section">
+              <div class="detail-section-title">👤 Cliente y Destino</div>
+              <div class="detail-row">
+                <span>Cliente</span><span id="d-customer">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Ciudad</span><span id="d-city">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Estado/Provincia</span><span id="d-state">—</span>
+              </div>
+              <div class="detail-row">
+                <span>País</span><span id="d-country">—</span>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <div class="detail-section-title">📦 Producto</div>
+              <div class="detail-row">
+                <span>Producto</span><span id="d-product">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Categoría</span><span id="d-category">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Marca</span><span id="d-brand">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Cantidad</span><span id="d-quantity">—</span>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <div class="detail-section-title">💰 Desglose de Costos</div>
+              <div class="detail-row">
+                <span>Precio unitario</span><span id="d-price">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Descuento</span><span id="d-discount">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Impuesto</span><span id="d-tax">—</span>
+              </div>
+              <div class="detail-row">
+                <span>Costo de envío</span><span id="d-shipping">—</span>
+              </div>
+              <div class="detail-row total-row">
+                <span>Total</span><span id="d-total">—</span>
+              </div>
+            </div>
+
+            <div class="detail-section">
+              <div class="detail-section-title">💳 Pago</div>
+              <div class="detail-row">
+                <span>Método de pago</span><span id="d-payment">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/static/js/tracking.js"></script>
+  </body>
+</html>

@@ -1,0 +1,177 @@
+/* SwiftShip — auth.css — Paquete 1: Acceso y Seguridad */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #0f1117;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e2e8f0;
+}
+
+/* ── Wrapper ── */
+.auth-wrapper {
+  width: 100%;
+  max-width: 480px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ── Brand ── */
+.auth-brand { text-align: center; }
+
+.brand-logo {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 12px #3b82f6aa);
+}
+
+.auth-brand h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.auth-brand p {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* ── Card ── */
+.auth-card {
+  background: #1e2130;
+  border: 1px solid #2d3147;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+}
+
+.auth-card.wide { max-width: 560px; width: 560px; }
+
+.auth-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 24px;
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.card-header-row h2 { margin-bottom: 0; }
+
+/* ── Form ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  background: #0f1117;
+  border: 1px solid #2d3147;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #e2e8f0;
+  font-size: 0.925rem;
+  transition: border-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+input:focus, select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+input::placeholder { color: #475569; }
+
+select option { background: #1e2130; }
+
+small {
+  font-size: 0.75rem;
+  color: #475569;
+  margin-top: 2px;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover  { background: #2563eb; }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-back {
+  font-size: 0.8rem;
+  color: #64748b;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid #2d3147;
+  border-radius: 6px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-back:hover { color: #e2e8f0; border-color: #475569; }
+
+/* ── Alerts ── */
+.alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+  border-left: 3px solid;
+}
+
+.alert-success { background: #052e16; border-color: #16a34a; color: #86efac; }
+.alert-danger   { background: #450a0a; border-color: #dc2626; color: #fca5a5; }
+.alert-warning  { background: #422006; border-color: #d97706; color: #fcd34d; }
+.alert-info     { background: #0c1a3a; border-color: #3b82f6; color: #93c5fd; }
+
+/* ── Footer ── */
+.auth-footer {
+  font-size: 0.75rem;
+  color: #334155;
+  text-align: center;
+}
