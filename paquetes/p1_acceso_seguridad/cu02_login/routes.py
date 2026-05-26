@@ -30,7 +30,17 @@ def login():
             session['email']      = usuario['email']
             session['rol']        = usuario['rol']
             session['seller_id']  = usuario.get('seller_id', '')
+
             flash(f'Bienvenido, {usuario["nombre"]}.', 'success')
+
+            # Redirección inteligente: si venía de otra ruta, volver ahí
+            next_url = session.pop('next_url', None)
+            if next_url:
+                return redirect(next_url)
+
+            # Redirección por rol
+            if usuario['rol'] == 'vendedor':
+                return redirect(url_for('vendedor_home'))
             return redirect(url_for('home'))
 
         flash('Email o contraseña incorrectos.', 'danger')

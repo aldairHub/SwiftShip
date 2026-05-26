@@ -9,7 +9,7 @@ load_dotenv()
 import logging
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for
 from flask_cors import CORS
 
 from db.mongo_connector import get_db, create_indexes
@@ -67,12 +67,14 @@ def create_app() -> Flask:
     app.register_blueprint(crud_bp,    url_prefix="/api/crud")
 
     # ── Rutas HTML ────────────────────────────────────────────────────
-    from paquetes.p1_acceso_seguridad.cu03_control_acceso.decorators import requiere_login, requiere_admin
+    from paquetes.p1_acceso_seguridad.cu03_control_acceso.decorators import requiere_login, requiere_admin, requiere_vendedor
 
-    @app.route("/")
+    @app.route('/')
     @requiere_login
     def home():
-        return render_template("home.html")
+        if session.get('rol') == 'vendedor':
+            return redirect(url_for('vendedor_home'))
+        return render_template('home.html')
 
     @app.route("/dashboard")
     @requiere_login
@@ -93,6 +95,18 @@ def create_app() -> Flask:
     @requiere_admin
     def crud():
         return render_template("crud.html")
+
+    @app.route('/vendedor')
+    @requiere_vendedor
+    def vendedor_home():
+        return render_template('p2_vendedor/bienvenida_vendedor.html')
+
+    @app.after_request
+    def no_cache(response):
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        return response
 
     logger.info("SwiftShip app lista.")
     return app

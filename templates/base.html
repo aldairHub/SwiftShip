@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}SwiftShip{% endblock %}</title>
+
+  <link rel="stylesheet" href="/static/css/dashboard.css" />
+  <link rel="stylesheet" href="/static/css/base.css" />
+  <link rel="icon" type="image/png" href="/static/img/logo.png" />
+
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+
+      <a href="/" class="logo">
+        <img src="/static/img/logo.png" alt="SwiftShip" class="logo-img" />
+        SwiftShip
+      </a>
+
+      <nav class="nav">
+        {% if session.get('rol') == 'admin' %}
+          <a href="/dashboard"    class="nav-link">Dashboard</a>
+          <a href="/tracking"     class="nav-link">Seguimiento</a>
+          <a href="/sellers"      class="nav-link">Vendedores</a>
+          <a href="/crud"         class="nav-link">CRUD</a>
+          <a href="/auth/registro" class="nav-link nav-link-new">+ Usuario</a>
+        {% elif session.get('rol') == 'vendedor' %}
+          <a href="/" class="nav-link">Inicio</a>
+        {% endif %}
+      </nav>
+
+      <div class="nav-user">
+        <span class="nav-user-name">{{ session.get('nombre', '') }}</span>
+        <span class="nav-role-badge badge-{{ session.get('rol', '') }}">
+          {{ session.get('rol', '') }}
+        </span>
+        <a href="/auth/logout" class="nav-logout">Cerrar sesión</a>
+      </div>
+
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+
+  {% block extra_js %}{% endblock %}
+
+</body>
+</html>

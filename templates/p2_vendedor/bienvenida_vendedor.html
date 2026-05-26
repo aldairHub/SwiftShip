@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}SwiftShip — Portal Vendedor{% endblock %}
+
+{% block extra_css %}
+<style>
+.vendor-wrap {
+  max-width: 860px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+.vendor-hero {
+  background: linear-gradient(135deg, #0f2027, #1a3a4a);
+  border: 1px solid #1e3a4a;
+  border-radius: 16px;
+  padding: 48px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.vendor-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #064e3b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.vendor-greeting { flex: 1; }
+.vendor-greeting h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 6px;
+}
+.vendor-greeting p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+.vendor-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.meta-badge {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.meta-badge strong { color: #e2e8f0; }
+.modules-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.module-card {
+  background: #1e2130;
+  border: 1px solid #2d3147;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.module-icon { font-size: 28px; margin-bottom: 10px; }
+.module-name { font-size: 0.9rem; font-weight: 600; color: #e2e8f0; margin-bottom: 4px; }
+.module-status {
+  font-size: 11px;
+  color: #64748b;
+  background: #0f1117;
+  padding: 2px 8px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 8px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="vendor-wrap">
+
+  <div class="vendor-hero">
+    <div class="vendor-avatar">🏪</div>
+    <div class="vendor-greeting">
+      <h1>Bienvenido, {{ session.get('nombre', 'Vendedor') }}</h1>
+      <p>Tu portal de gestión logística en SwiftShip está en preparación.</p>
+      <div class="vendor-meta">
+        <div class="meta-badge">
+          🪪 Seller ID: <strong>{{ session.get('seller_id', 'N/A') }}</strong>
+        </div>
+        <div class="meta-badge">
+          📧 <strong>{{ session.get('email', '') }}</strong>
+        </div>
+        <div class="meta-badge">
+          🔐 Rol: <strong>Vendedor</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="modules-title">Módulos disponibles próximamente</p>
+  <div class="modules-grid">
+    <div class="module-card">
+      <div class="module-icon">📦</div>
+      <div class="module-name">Crear Envío</div>
+      <span class="module-status">Semana 2</span>
+    </div>
+    <div class="module-card">
+      <div class="module-icon">🗂️</div>
+      <div class="module-name">Mis Pedidos</div>
+      <span class="module-status">Semana 2</span>
+    </div>
+    <div class="module-card">
+      <div class="module-icon">📊</div>
+      <div class="module-name">Mis Métricas</div>
+      <span class="module-status">Semana 2</span>
+    </div>
+    <div class="module-card">
+      <div class="module-icon">🚚</div>
+      <div class="module-name">Rastreo de Envíos</div>
+      <span class="module-status">Semana 3</span>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

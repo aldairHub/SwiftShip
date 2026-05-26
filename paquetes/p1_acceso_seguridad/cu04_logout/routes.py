@@ -11,4 +11,4 @@ def logout():
     nombre = session.get('nombre', 'Usuario')
     session.clear()
     flash(f'Sesión cerrada. Hasta luego, {nombre}.', 'info')
-    return redirect(url_for('cu02_login.login'))
+    return redirect(url_for('login.login'))

@@ -1,0 +1,118 @@
+/* SwiftShip — base.css
+   Estilos para navbar de usuario y mensajes flash
+   Complementa dashboard.css sin reemplazarlo
+*/
+
+/* ── Info de usuario en navbar ──────────────────── */
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.nav-user-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #c2c0b6;
+}
+
+.nav-role-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-admin {
+  background: #1e3a5f;
+  color: #93c5fd;
+}
+
+.badge-vendedor {
+  background: #064e3b;
+  color: #6ee7b7;
+}
+
+.nav-logout {
+  font-size: 12px;
+  font-weight: 500;
+  color: #f87171;
+  text-decoration: none;
+  padding: 4px 12px;
+  border: 1px solid #f87171;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-logout:hover {
+  background: #f87171;
+  color: #0f1117;
+}
+
+.nav-link-new {
+  background: #1d4ed8;
+  color: #fff !important;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+
+.nav-link-new:hover {
+  background: #2563eb;
+}
+
+/* ── Mensajes flash ──────────────────────────────── */
+.flash-container {
+  max-width: 1200px;
+  margin: 12px auto 0;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flash {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border-left: 4px solid;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flash-success {
+  background: #052e16;
+  border-color: #16a34a;
+  color: #86efac;
+}
+
+.flash-danger {
+  background: #450a0a;
+  border-color: #dc2626;
+  color: #fca5a5;
+}
+
+.flash-warning {
+  background: #422006;
+  border-color: #d97706;
+  color: #fcd34d;
+}
+
+.flash-info {
+  background: #0c1a3a;
+  border-color: #3b82f6;
+  color: #93c5fd;
+}
